@@ -1,0 +1,5 @@
+{
+  "item.invokablemounts.inactive_pig_invoker": "Pig Invocation",
+  "item.invokablemounts.active_pig_invoker": "Pig Invocation",
+  "item.invokablemounts.pig_invoker.hover": "Invokes a ghost pig as a temporary mount. Use while riding to boost."
+}
