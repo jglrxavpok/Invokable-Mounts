@@ -28,6 +28,22 @@ public abstract class BaseMountRenderer<T extends Mob & MountEntity> extends Mob
         models.add(model);
     }
 
+    protected float getBaseAlpha() {
+        return 0.6f;
+    }
+
+    protected float getBaseRed() {
+        return 1.0f;
+    }
+
+    protected float getBaseGreen() {
+        return 1.0f;
+    }
+
+    protected float getBaseBlue() {
+        return 1.0f;
+    }
+
     @Override
     public void render(T entity, float p_115456_, float p_115457_, PoseStack poseStack, MultiBufferSource bufferSource, int p_115460_) {
         final RenderType renderType = getRenderType(entity, true, false, false);
@@ -41,7 +57,7 @@ public abstract class BaseMountRenderer<T extends Mob & MountEntity> extends Mob
                 alpha = 1.0f - Maths.easeInOutExpo(1.0f - ratio);
             }
 
-            model.setColor(1.0f, 1.0f, 1.0f, alpha);
+            model.setColor(getBaseRed(), getBaseGreen(), getBaseBlue(), alpha * getBaseAlpha());
         }
         super.render(entity, p_115456_, p_115457_, poseStack, bufferSource, p_115460_);
     }

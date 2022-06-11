@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "invokablemounts:item/inactive_strider_invoker"
+  }
+}

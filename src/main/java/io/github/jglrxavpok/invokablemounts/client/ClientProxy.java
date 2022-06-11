@@ -1,8 +1,10 @@
 package io.github.jglrxavpok.invokablemounts.client;
 
 import io.github.jglrxavpok.invokablemounts.InvokableMountsMod;
+import io.github.jglrxavpok.invokablemounts.client.renderers.EnderDragonMountRenderer;
 import io.github.jglrxavpok.invokablemounts.client.renderers.HorseMountRenderer;
 import io.github.jglrxavpok.invokablemounts.client.renderers.PigMountRenderer;
+import io.github.jglrxavpok.invokablemounts.client.renderers.StriderMountRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,5 +23,7 @@ public class ClientProxy {
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(InvokableMountsMod.Entities.PIG_MOUNT.get(), PigMountRenderer::new);
         event.registerEntityRenderer(InvokableMountsMod.Entities.HORSE_MOUNT.get(), HorseMountRenderer::new);
+        event.registerEntityRenderer(InvokableMountsMod.Entities.STRIDER_MOUNT.get(), StriderMountRenderer::new);
+        event.registerEntityRenderer(InvokableMountsMod.Entities.ENDER_DRAGON_MOUNT.get(), EnderDragonMountRenderer::new);
     }
 }

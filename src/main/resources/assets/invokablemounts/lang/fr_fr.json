@@ -1,5 +1,32 @@
 {
   "item.invokablemounts.inactive_pig_invoker": "Invocation de Cochon",
   "item.invokablemounts.active_pig_invoker": "Invocation de Cochon",
-  "item.invokablemounts.pig_invoker.hover": "Invoque une monture spectrale de cochon. Utiliser l'objet sur la monture lui fait aller plus vite."
+  "item.invokablemounts.pig_invoker.hover": "Invoque une monture spectrale de Cochon. Utiliser l'objet sur la monture la fait aller plus vite.",
+
+  "item.invokablemounts.inactive_horse_invoker": "Invocation de Cheval",
+  "item.invokablemounts.active_horse_invoker": "Invocation de Cheval",
+  "item.invokablemounts.horse_invoker.hover": "Invoque une monture spectrale de Cheval.",
+
+  "item.invokablemounts.inactive_strider_invoker": "Invocation d'Arpenteur",
+  "item.invokablemounts.active_strider_invoker": "Invocation d'Arpenteur",
+  "item.invokablemounts.strider_invoker.hover": "Invoque une monture spectrale d'Arpenteur. Utiliser l'objet sur la monture la fait aller plus vite.",
+
+  "item.invokablemounts.inactive_phantom_invoker": "Invocation de Phantom",
+  "item.invokablemounts.active_phantom_invoker": "Invocation de Phantom",
+  "item.invokablemounts.phantom_invoker.hover": "Invoque un Phantom en temps que parapente.",
+
+  "item.invokablemounts.inactive_ender_dragon_invoker": "Invocation de Dragon",
+  "item.invokablemounts.active_ender_dragon_invoker": "Invocation de Dragon",
+  "item.invokablemounts.ender_dragon_invoker.hover": "Invoque un EnderDragon en temps de monture temporaire. Attention à ne pas suffoquer!",
+
+  "item.invokablemounts.overworld_lantern": "Lanterne Voleuse d'Âmes Basique",
+  "item.invokablemounts.overworld_lantern.hover": "À tenir lorsque vous tuez un animal. Cette lanterne basique ne peut capturer que des Cochons ou des Chevaux.",
+
+  "item.invokablemounts.otherworldly_lantern": "Lanterne Voleuse d'Âmes Améliorée",
+  "item.invokablemounts.otherworldly_lantern.hover": "À tenir lorsque vous tuez un animal. Cette lanterne améliorée ne peut capturer que des Arpenteurs ou des Phantoms.",
+
+  "item.invokablemounts.pig_soul": "Âme de Cochon",
+  "item.invokablemounts.horse_soul": "Âme de Cheval",
+  "item.invokablemounts.strider_soul": "Âme d'Arpenteur",
+  "item.invokablemounts.phantom_soul": "Âme de Phantom"
 }

@@ -1,5 +1,32 @@
 {
   "item.invokablemounts.inactive_pig_invoker": "Pig Invocation",
   "item.invokablemounts.active_pig_invoker": "Pig Invocation",
-  "item.invokablemounts.pig_invoker.hover": "Invokes a ghost pig as a temporary mount. Use while riding to boost."
+  "item.invokablemounts.pig_invoker.hover": "Invokes a ghost Pig as a temporary mount. Use while riding to boost.",
+
+  "item.invokablemounts.inactive_horse_invoker": "Horse Invocation",
+  "item.invokablemounts.active_horse_invoker": "Horse Invocation",
+  "item.invokablemounts.horse_invoker.hover": "Invokes a ghost Horse as a temporary mount.",
+
+  "item.invokablemounts.inactive_strider_invoker": "Strider Invocation",
+  "item.invokablemounts.active_strider_invoker": "Strider Invocation",
+  "item.invokablemounts.strider_invoker.hover": "Invokes a ghost Strider as a temporary mount. Use while riding to boost.",
+
+  "item.invokablemounts.inactive_phantom_invoker": "Phantom Invocation",
+  "item.invokablemounts.active_phantom_invoker": "Phantom Invocation",
+  "item.invokablemounts.phantom_invoker.hover": "Invokes a ghost Strider as a temporary glider.",
+
+  "item.invokablemounts.inactive_ender_dragon_invoker": "Dragon Invocation",
+  "item.invokablemounts.active_ender_dragon_invoker": "Dragon Invocation",
+  "item.invokablemounts.ender_dragon_invoker.hover": "Invokes a ghost EnderDragon as a temporary mount. Be careful not to suffocate!",
+
+  "item.invokablemounts.overworld_lantern": "Basic Soul-Stealing Lantern",
+  "item.invokablemounts.overworld_lantern.hover": "Hold while keeping a mob to get its soul. This basic lantern can only capture Pigs and Horses.",
+
+  "item.invokablemounts.otherworldly_lantern": "Upgraded Soul-Stealing Lantern",
+  "item.invokablemounts.otherworldly_lantern.hover": "Hold while keeping a mob to get its soul. This upgraded lantern can capture Striders and Phantoms.",
+
+  "item.invokablemounts.pig_soul": "Pig Soul",
+  "item.invokablemounts.horse_soul": "Horse Soul",
+  "item.invokablemounts.strider_soul": "Strider Soul",
+  "item.invokablemounts.phantom_soul": "Phantom Soul"
 }

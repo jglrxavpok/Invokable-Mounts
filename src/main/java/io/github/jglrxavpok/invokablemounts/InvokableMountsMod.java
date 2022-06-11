@@ -1,12 +1,11 @@
 package io.github.jglrxavpok.invokablemounts;
 
 import com.mojang.logging.LogUtils;
+import io.github.jglrxavpok.invokablemounts.entities.EnderDragonMount;
 import io.github.jglrxavpok.invokablemounts.entities.HorseMount;
 import io.github.jglrxavpok.invokablemounts.entities.PigMount;
-import io.github.jglrxavpok.invokablemounts.items.HorseInvocationItem;
-import io.github.jglrxavpok.invokablemounts.items.InvocationItem;
-import io.github.jglrxavpok.invokablemounts.items.PigInvocationItem;
-import io.github.jglrxavpok.invokablemounts.items.SoulStealingLanternItem;
+import io.github.jglrxavpok.invokablemounts.entities.StriderMount;
+import io.github.jglrxavpok.invokablemounts.items.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.BlockItem;
@@ -63,6 +62,26 @@ public class InvokableMountsMod
                     .clientTrackingRange(10)
                     .build("horse_mount");
         });
+
+        public static final RegistryObject<EntityType<StriderMount>> STRIDER_MOUNT = REGISTRY.register("strider_mount", () -> {
+            EntityType.EntityFactory<StriderMount> factory = StriderMount::new;
+            return EntityType.Builder.of(factory, MobCategory.CREATURE)
+                    .fireImmune()
+                    .noSummon()
+                    .sized(0.9F, 1.7F)
+                    .clientTrackingRange(10)
+                    .build("strider_mount");
+        });
+
+        public static final RegistryObject<EntityType<EnderDragonMount>> ENDER_DRAGON_MOUNT = REGISTRY.register("ender_dragon_mount", () -> {
+            EntityType.EntityFactory<EnderDragonMount> factory = EnderDragonMount::new;
+            return EntityType.Builder.of(factory, MobCategory.CREATURE)
+                    .fireImmune()
+                    .noSummon()
+                    .sized(16.0F, 8.0F)
+                    .clientTrackingRange(10)
+                    .build("ender_dragon_mount");
+        });
     }
 
     public static class Blocks
@@ -88,11 +107,35 @@ public class InvokableMountsMod
         public static final RegistryObject<Item> ACTIVE_HORSE_INVOKER = REGISTRY.register("active_horse_invoker",
                 () -> new HorseInvocationItem(true, "horse_invoker"));
 
+        public static final RegistryObject<Item> STRIDER_INVOKER = REGISTRY.register("inactive_strider_invoker",
+                () -> new StriderInvocationItem(false, "strider_invoker"));
+
+        public static final RegistryObject<Item> ACTIVE_STRIDER_INVOKER = REGISTRY.register("active_strider_invoker",
+                () -> new StriderInvocationItem(true, "strider_invoker"));
+
+        public static final RegistryObject<Item> ENDER_DRAGON_INVOKER = REGISTRY.register("inactive_ender_dragon_invoker",
+                () -> new EnderDragonInvocationItem(false, "ender_dragon_invoker"));
+
+        public static final RegistryObject<Item> ACTIVE_ENDER_DRAGON_INVOKER = REGISTRY.register("active_ender_dragon_invoker",
+                () -> new EnderDragonInvocationItem(true, "ender_dragon_invoker"));
+
         public static final RegistryObject<Item> OVERWORLD_LANTERN = REGISTRY.register("overworld_lantern",
                 () -> new SoulStealingLanternItem());
 
+        public static final RegistryObject<Item> OTHERWORLDLY_LANTERN = REGISTRY.register("otherworldly_lantern",
+                () -> new SoulStealingLanternItem());
+
         public static final RegistryObject<Item> PIG_SOUL = REGISTRY.register("pig_soul",
-                () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_TRANSPORTATION).stacksTo(1)));
+                () -> new SoulItem());
+
+        public static final RegistryObject<Item> HORSE_SOUL = REGISTRY.register("horse_soul",
+                () -> new SoulItem());
+
+        public static final RegistryObject<Item> STRIDER_SOUL = REGISTRY.register("strider_soul",
+                () -> new SoulItem());
+
+        public static final RegistryObject<Item> PHANTOM_SOUL = REGISTRY.register("phantom_soul",
+                () -> new SoulItem());
     }
 
     public static final String MODID = "invokablemounts";

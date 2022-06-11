@@ -114,7 +114,7 @@ public abstract class InvocationItem<T extends Entity> extends Item {
                 mount.setCustomNameVisible(true);
             }
             mount.setPos(player.getPosition(1.0f));
-            player.startRiding(mount);
+            player.startRiding(mount, true);
 
             // TODO: mount.playSound();
             level.addFreshEntity(mount);

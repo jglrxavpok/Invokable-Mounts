@@ -43,6 +43,18 @@ public interface MountEntity {
         return asEntity().getEntityData().get(getRemainingTicksAccessor());
     }
 
+    /**
+     * Called when the mount should spawn particle for its death
+     */
+    default void onDespawnParticleSpawn() {
+        asEntity().spawnSoulSpeedParticle();
+    }
+
+    /**
+     * Called when the mount despawns
+     */
+    default void onMountDespawn() {}
+
     default void setRemainingTicksBeforeDisappearing(int ticks) {
         asEntity().getEntityData().set(getRemainingTicksAccessor(), ticks);
     }
@@ -57,7 +69,7 @@ public interface MountEntity {
         int remainingTicks = getRemainingTicksBeforeDisappearing();
         if(asEntity().level.isClientSide) {
             if(remainingTicks < TICKS_WITH_PARTICLES) {
-                asEntity().spawnSoulSpeedParticle();
+                onDespawnParticleSpawn();
             }
         } else {
             if(!asEntity().isVehicle()) {
