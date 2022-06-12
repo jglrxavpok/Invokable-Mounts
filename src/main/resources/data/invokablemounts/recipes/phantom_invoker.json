@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "invokablemounts:phantom_soul"
+    },
+    "s": {
+      "item": "minecraft:soul_sand"
+    },
+    "M": {
+      "item": "minecraft:phantom_membrane"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "N": {
+      "item": "minecraft:netherite_scrap"
+    }
+  },
+  "pattern": [
+    "sMs",
+    "DSD",
+    "sNs"
+  ],
+  "result": {
+    "item": "invokablemounts:inactive_phantom_invoker"
+  }
+}

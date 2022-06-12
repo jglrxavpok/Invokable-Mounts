@@ -38,16 +38,6 @@ public class StriderMount extends Strider implements MountEntity {
     }
 
     @Override
-    public float getMoveSpeed() {
-        return (float)this.getAttributeValue(Attributes.MOVEMENT_SPEED) * (this.isSuffocating() ? 0.66F/2.0f : 1.25F);
-    }
-
-    @Override
-    public float getSteeringSpeed() {
-        return (float)this.getAttributeValue(Attributes.MOVEMENT_SPEED) * (this.isSuffocating() ? 0.23F/2.0f : 1.25F);
-    }
-
-    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         defineSynchedData_Mount();

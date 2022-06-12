@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "s": {
+      "item": "minecraft:echo_shard"
+    },
+    "H": {
+      "item": "minecraft:dragon_head"
+    },
+    "l": {
+      "item": "minecraft:elytra"
+    },
+    "E": {
+      "item": "minecraft:nether_star"
+    },
+    "n": {
+      "item": "minecraft:netherite_ingot"
+    }
+  },
+  "pattern": [
+    "sHs",
+    "nln",
+    "sEs"
+  ],
+  "result": {
+    "item": "invokablemounts:inactive_ender_dragon_invoker"
+  }
+}

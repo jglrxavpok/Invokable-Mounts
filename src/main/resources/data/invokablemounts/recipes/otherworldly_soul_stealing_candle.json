@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "item": "minecraft:candle"
+    },
+    "S": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "R": {
+      "item": "minecraft:respawn_anchor"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "pattern": [
+    " S ",
+    "RCG",
+    "GGG"
+  ],
+  "result": {
+    "item": "invokablemounts:otherworldly_soul_stealing_candle"
+  }
+}

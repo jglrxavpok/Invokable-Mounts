@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "invokablemounts:horse_soul"
+    },
+    "I": {
+      "item": "minecraft:iron_block"
+    },
+    "H": {
+      "item": "minecraft:hay_block"
+    },
+    "s": {
+      "item": "minecraft:saddle"
+    },
+    "G": {
+      "item": "minecraft:golden_carrot"
+    }
+  },
+  "pattern": [
+    "HsH",
+    "ISI",
+    "HGH"
+  ],
+  "result": {
+    "item": "invokablemounts:inactive_horse_invoker"
+  }
+}

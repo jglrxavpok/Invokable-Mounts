@@ -64,7 +64,7 @@ public class DragonRidingPhase extends AbstractDragonPhaseInstance {
     }
 
     public float getTurnSpeed() {
-        return super.getTurnSpeed();
+        return super.getTurnSpeed() * 2.0f;
     }
 
     @Override

@@ -1,27 +1,16 @@
 package io.github.jglrxavpok.invokablemounts;
 
 import com.mojang.logging.LogUtils;
-import io.github.jglrxavpok.invokablemounts.entities.EnderDragonMount;
-import io.github.jglrxavpok.invokablemounts.entities.HorseMount;
-import io.github.jglrxavpok.invokablemounts.entities.PigMount;
-import io.github.jglrxavpok.invokablemounts.entities.StriderMount;
+import io.github.jglrxavpok.invokablemounts.entities.*;
 import io.github.jglrxavpok.invokablemounts.items.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
@@ -34,12 +23,9 @@ import org.slf4j.Logger;
 
 import java.util.stream.Collectors;
 
-// The value here should match an entry in the META-INF/mods.toml file
 @Mod(InvokableMountsMod.MODID)
-public class InvokableMountsMod
-{
-    public static class Entities
-    {
+public class InvokableMountsMod {
+    public static class Entities {
         public static final DeferredRegister<EntityType<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.ENTITIES,
                 InvokableMountsMod.MODID);
 
@@ -73,6 +59,16 @@ public class InvokableMountsMod
                     .build("strider_mount");
         });
 
+        public static final RegistryObject<EntityType<PhantomMount>> PHANTOM_MOUNT = REGISTRY.register("phantom_mount", () -> {
+            EntityType.EntityFactory<PhantomMount> factory = PhantomMount::new;
+            return EntityType.Builder.of(factory, MobCategory.CREATURE)
+                    .fireImmune()
+                    .noSummon()
+                    .sized(0.9F, 0.5F)
+                    .clientTrackingRange(10)
+                    .build("phantom_mount");
+        });
+
         public static final RegistryObject<EntityType<EnderDragonMount>> ENDER_DRAGON_MOUNT = REGISTRY.register("ender_dragon_mount", () -> {
             EntityType.EntityFactory<EnderDragonMount> factory = EnderDragonMount::new;
             return EntityType.Builder.of(factory, MobCategory.CREATURE)
@@ -84,14 +80,12 @@ public class InvokableMountsMod
         });
     }
 
-    public static class Blocks
-    {
+    public static class Blocks {
         public static final DeferredRegister<Block> REGISTRY = DeferredRegister.create(ForgeRegistries.BLOCKS,
                 InvokableMountsMod.MODID);
     }
 
-    public static class Items
-    {
+    public static class Items {
         public static final DeferredRegister<Item> REGISTRY = DeferredRegister.create(ForgeRegistries.ITEMS,
                 InvokableMountsMod.MODID);
 
@@ -113,29 +107,35 @@ public class InvokableMountsMod
         public static final RegistryObject<Item> ACTIVE_STRIDER_INVOKER = REGISTRY.register("active_strider_invoker",
                 () -> new StriderInvocationItem(true, "strider_invoker"));
 
+        public static final RegistryObject<Item> PHANTOM_INVOKER = REGISTRY.register("inactive_phantom_invoker",
+                () -> new PhantomInvocationItem(false, "phantom_invoker"));
+
+        public static final RegistryObject<Item> ACTIVE_PHANTOM_INVOKER = REGISTRY.register("active_phantom_invoker",
+                () -> new PhantomInvocationItem(true, "phantom_invoker"));
+
         public static final RegistryObject<Item> ENDER_DRAGON_INVOKER = REGISTRY.register("inactive_ender_dragon_invoker",
                 () -> new EnderDragonInvocationItem(false, "ender_dragon_invoker"));
 
         public static final RegistryObject<Item> ACTIVE_ENDER_DRAGON_INVOKER = REGISTRY.register("active_ender_dragon_invoker",
                 () -> new EnderDragonInvocationItem(true, "ender_dragon_invoker"));
 
-        public static final RegistryObject<Item> OVERWORLD_LANTERN = REGISTRY.register("overworld_lantern",
-                () -> new SoulStealingLanternItem());
+        public static final RegistryObject<Item> SOUL_STEALING_CANDLE = REGISTRY.register("soul_stealing_candle",
+                () -> new SoulStealingCandleItem());
 
-        public static final RegistryObject<Item> OTHERWORLDLY_LANTERN = REGISTRY.register("otherworldly_lantern",
-                () -> new SoulStealingLanternItem());
+        public static final RegistryObject<Item> OTHERWORLDLY_SOUL_STEALING_CANDLE = REGISTRY.register("otherworldly_soul_stealing_candle",
+                () -> new SoulStealingCandleItem());
 
         public static final RegistryObject<Item> PIG_SOUL = REGISTRY.register("pig_soul",
-                () -> new SoulItem());
+                () -> new SoulItem(false));
 
         public static final RegistryObject<Item> HORSE_SOUL = REGISTRY.register("horse_soul",
-                () -> new SoulItem());
+                () -> new SoulItem(false));
 
         public static final RegistryObject<Item> STRIDER_SOUL = REGISTRY.register("strider_soul",
-                () -> new SoulItem());
+                () -> new SoulItem(true));
 
         public static final RegistryObject<Item> PHANTOM_SOUL = REGISTRY.register("phantom_soul",
-                () -> new SoulItem());
+                () -> new SoulItem(true));
     }
 
     public static final String MODID = "invokablemounts";

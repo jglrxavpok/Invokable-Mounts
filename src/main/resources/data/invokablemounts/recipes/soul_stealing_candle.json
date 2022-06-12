@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "minecraft:string"
+    },
+    "H": {
+      "item": "minecraft:heart_of_the_sea"
+    },
+    "C": {
+      "item": "minecraft:candle"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "pattern": [
+    " S ",
+    "HCG",
+    "GGG"
+  ],
+  "result": {
+    "item": "invokablemounts:soul_stealing_candle"
+  }
+}

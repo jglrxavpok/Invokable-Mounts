@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "invokablemounts:item/overworld_lantern"
+    "layer0": "invokablemounts:item/soul_stealing_candle"
   }
 }

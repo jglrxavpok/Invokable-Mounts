@@ -65,6 +65,10 @@ public interface MountEntity {
         asEntity().getEntityData().define(getRemainingTicksAccessor(), TICK_COUNT_PER_DESPAWN);
     }
 
+    default boolean keepMountAlive() {
+        return asEntity().isVehicle();
+    }
+
     default void tick_Mount() {
         int remainingTicks = getRemainingTicksBeforeDisappearing();
         if(asEntity().level.isClientSide) {
@@ -72,7 +76,7 @@ public interface MountEntity {
                 onDespawnParticleSpawn();
             }
         } else {
-            if(!asEntity().isVehicle()) {
+            if(!keepMountAlive()) {
                 if(remainingTicks-- <= 0) {
                     asEntity().remove(Entity.RemovalReason.DISCARDED);
                 } else if(remainingTicks == TICK_DEATH_SOUND) {

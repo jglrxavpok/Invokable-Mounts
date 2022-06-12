@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -47,10 +48,10 @@ public abstract class BaseMountRenderer<T extends Mob & MountEntity> extends Mob
     @Override
     public void render(T entity, float p_115456_, float p_115457_, PoseStack poseStack, MultiBufferSource bufferSource, int p_115460_) {
         final RenderType renderType = getRenderType(entity, true, false, false);
+        float alpha = 1.0f;
         for(var model : models) {
             model.preRender(bufferSource, renderType);
 
-            float alpha = 1.0f;
             int ticks = entity.getRemainingTicksBeforeDisappearing();
             if(ticks < MountEntity.TICK_COUNT_PER_DESPAWN) {
                 float ratio = ticks / ((float) MountEntity.TICK_COUNT_PER_DESPAWN);
@@ -59,6 +60,7 @@ public abstract class BaseMountRenderer<T extends Mob & MountEntity> extends Mob
 
             model.setColor(getBaseRed(), getBaseGreen(), getBaseBlue(), alpha * getBaseAlpha());
         }
+
         super.render(entity, p_115456_, p_115457_, poseStack, bufferSource, p_115460_);
     }
 

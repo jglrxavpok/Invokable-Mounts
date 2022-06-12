@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "io.github.jglrxavpok.invokablemounts.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "LivingEntityMixin",
+    "PlayerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "invokablemounts.mixin-refmap.json"
+}

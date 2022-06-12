@@ -31,6 +31,10 @@ public class GhostModelWrapper<T extends Entity> extends EntityModel<T> {
         this.model = toWrap;
     }
 
+    public EntityModel<T> getWrapped() {
+        return model;
+    }
+
     public void preRender(MultiBufferSource bufferSource, RenderType renderType) {
         this.bufferSource = bufferSource;
         this.overrideRenderType = renderType;

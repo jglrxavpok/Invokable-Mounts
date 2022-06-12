@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "invokablemounts:pig_soul"
+    },
+    "D": {
+      "item": "minecraft:dirt"
+    },
+    "R": {
+      "item": "minecraft:carrot_on_a_stick"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    }
+  },
+  "pattern": [
+    "DRD",
+    "ISI",
+    "DLD"
+  ],
+  "result": {
+    "item": "invokablemounts:inactive_pig_invoker"
+  }
+}

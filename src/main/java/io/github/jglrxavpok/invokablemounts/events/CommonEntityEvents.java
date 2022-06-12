@@ -49,16 +49,16 @@ public class CommonEntityEvents {
         Entity sourceEntity = event.getSource().getEntity();
         if(sourceEntity instanceof Player player) {
             if (event.getEntity() instanceof Pig) {
-                attemptToCaptureSoul(event.getEntityLiving(), player, InvokableMountsMod.Items.OVERWORLD_LANTERN.get(), InvokableMountsMod.Items.PIG_SOUL.get());
+                attemptToCaptureSoul(event.getEntityLiving(), player, InvokableMountsMod.Items.SOUL_STEALING_CANDLE.get(), InvokableMountsMod.Items.PIG_SOUL.get());
             }
             if (event.getEntity() instanceof Horse) {
-                attemptToCaptureSoul(event.getEntityLiving(), player, InvokableMountsMod.Items.OVERWORLD_LANTERN.get(), InvokableMountsMod.Items.HORSE_SOUL.get());
+                attemptToCaptureSoul(event.getEntityLiving(), player, InvokableMountsMod.Items.SOUL_STEALING_CANDLE.get(), InvokableMountsMod.Items.HORSE_SOUL.get());
             }
             if (event.getEntity() instanceof Strider) {
-                attemptToCaptureSoul(event.getEntityLiving(), player, InvokableMountsMod.Items.OTHERWORLDLY_LANTERN.get(), InvokableMountsMod.Items.STRIDER_SOUL.get());
+                attemptToCaptureSoul(event.getEntityLiving(), player, InvokableMountsMod.Items.OTHERWORLDLY_SOUL_STEALING_CANDLE.get(), InvokableMountsMod.Items.STRIDER_SOUL.get());
             }
             if (event.getEntity() instanceof Phantom) {
-                attemptToCaptureSoul(event.getEntityLiving(), player, InvokableMountsMod.Items.OTHERWORLDLY_LANTERN.get(), InvokableMountsMod.Items.PHANTOM_SOUL.get());
+                attemptToCaptureSoul(event.getEntityLiving(), player, InvokableMountsMod.Items.OTHERWORLDLY_SOUL_STEALING_CANDLE.get(), InvokableMountsMod.Items.PHANTOM_SOUL.get());
             }
         }
     }

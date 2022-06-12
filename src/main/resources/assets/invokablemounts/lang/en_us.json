@@ -19,11 +19,11 @@
   "item.invokablemounts.active_ender_dragon_invoker": "Dragon Invocation",
   "item.invokablemounts.ender_dragon_invoker.hover": "Invokes a ghost EnderDragon as a temporary mount. Be careful not to suffocate!",
 
-  "item.invokablemounts.overworld_lantern": "Basic Soul-Stealing Lantern",
-  "item.invokablemounts.overworld_lantern.hover": "Hold while keeping a mob to get its soul. This basic lantern can only capture Pigs and Horses.",
+  "item.invokablemounts.soul_stealing_candle": "Soul-Stealing Candle",
+  "item.invokablemounts.soul_stealing_candle.hover": "Hold while keeping a mob to get its soul. This basic candle can only capture Pigs and Horses.",
 
-  "item.invokablemounts.otherworldly_lantern": "Upgraded Soul-Stealing Lantern",
-  "item.invokablemounts.otherworldly_lantern.hover": "Hold while keeping a mob to get its soul. This upgraded lantern can capture Striders and Phantoms.",
+  "item.invokablemounts.otherworldly_soul_stealing_candle": "Upgraded Soul-Stealing Candle",
+  "item.invokablemounts.otherworldly_soul_stealing_candle.hover": "Hold while keeping a mob to get its soul. This upgraded candle can capture Striders and Phantoms.",
 
   "item.invokablemounts.pig_soul": "Pig Soul",
   "item.invokablemounts.horse_soul": "Horse Soul",

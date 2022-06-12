@@ -42,7 +42,7 @@ public abstract class InvocationItem<T extends Entity> extends Item {
         lines.add(Component.translatable("item.invokablemounts."+baseID+".hover"));
     }
 
-    private ItemStack toggle(ItemStack currentStack) {
+    protected ItemStack toggle(ItemStack currentStack) {
         ItemStack changedStack = new ItemStack(ForgeRegistries.ITEMS.getValue(makeOppositeID()));
         changedStack.setDamageValue(currentStack.getDamageValue());
 
@@ -71,13 +71,35 @@ public abstract class InvocationItem<T extends Entity> extends Item {
         return InteractionResultHolder.fail(player.getItemInHand(hand));
     }
 
+    public boolean shouldStayActive(Level level, ItemStack stack, Player player) {
+        return player.isPassenger() && isRidingCorrespondingEntity(player);
+    }
+
+    public void startActiveState(Level level, ItemStack stack, Player player) {
+        T mount = generateEntity(level);
+        if(stack.hasCustomHoverName()) {
+            mount.setCustomName(stack.getHoverName());
+            mount.setCustomNameVisible(true);
+        }
+        mount.setPos(player.getPosition(1.0f));
+        player.startRiding(mount, true);
+
+        // TODO: mount.playSound();
+        level.addFreshEntity(mount);
+    }
+
+    public void finishActiveState(Level level, ItemStack stack, Player player) {
+        player.unRide();
+    }
+
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slot, boolean selected) {
         super.inventoryTick(stack, level, entity, slot, selected);
 
         if(entity instanceof Player player) {
             if(isActive) {
-                if(!player.isPassenger() || !isRidingCorrespondingEntity(player)) {
+                if(!shouldStayActive(level, stack, player)) {
+                    finishActiveState(level, stack, player);
                     player.getInventory().setItem(slot, toggle(stack));
                 } else if(stack.getDamageValue() < stack.getMaxDamage()) {
                     // TODO: config for speed
@@ -86,7 +108,7 @@ public abstract class InvocationItem<T extends Entity> extends Item {
                         stack.setDamageValue(stack.getDamageValue() + 1);
                     }
                 } else {
-                    player.unRide();
+                    finishActiveState(level, stack, player);
                     player.getInventory().setItem(slot, toggle(stack));
                 }
             } else {
@@ -108,16 +130,11 @@ public abstract class InvocationItem<T extends Entity> extends Item {
         }
 
         if(!level.isClientSide) {
-            T mount = generateEntity(level);
-            if(itemstack.hasCustomHoverName()) {
-                mount.setCustomName(itemstack.getHoverName());
-                mount.setCustomNameVisible(true);
+            if(!isActive) {
+                startActiveState(level, itemstack, player);
+            } else {
+                finishActiveState(level, itemstack, player);
             }
-            mount.setPos(player.getPosition(1.0f));
-            player.startRiding(mount, true);
-
-            // TODO: mount.playSound();
-            level.addFreshEntity(mount);
             return InteractionResultHolder.success(toggle(itemstack));
         }
 

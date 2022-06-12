@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "invokablemounts:strider_soul"
+    },
+    "s": {
+      "item": "minecraft:soul_sand"
+    },
+    "R": {
+      "item": "minecraft:warped_fungus_on_a_stick"
+    },
+    "g": {
+      "item": "minecraft:gold_ingot"
+    },
+    "L": {
+      "item": "minecraft:lava_bucket"
+    }
+  },
+  "pattern": [
+    "sRs",
+    "gSg",
+    "sLs"
+  ],
+  "result": {
+    "item": "invokablemounts:inactive_strider_invoker"
+  }
+}

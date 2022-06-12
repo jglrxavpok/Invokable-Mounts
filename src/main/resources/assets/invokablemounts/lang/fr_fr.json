@@ -19,11 +19,11 @@
   "item.invokablemounts.active_ender_dragon_invoker": "Invocation de Dragon",
   "item.invokablemounts.ender_dragon_invoker.hover": "Invoque un EnderDragon en temps de monture temporaire. Attention à ne pas suffoquer!",
 
-  "item.invokablemounts.overworld_lantern": "Lanterne Voleuse d'Âmes Basique",
-  "item.invokablemounts.overworld_lantern.hover": "À tenir lorsque vous tuez un animal. Cette lanterne basique ne peut capturer que des Cochons ou des Chevaux.",
+  "item.invokablemounts.soul_stealing_candle": "Bougie Voleuse d'Âmes Basique",
+  "item.invokablemounts.soul_stealing_candle.hover": "À tenir lorsque vous tuez un animal. Cette bougie basique ne peut capturer que des Cochons ou des Chevaux.",
 
-  "item.invokablemounts.otherworldly_lantern": "Lanterne Voleuse d'Âmes Améliorée",
-  "item.invokablemounts.otherworldly_lantern.hover": "À tenir lorsque vous tuez un animal. Cette lanterne améliorée ne peut capturer que des Arpenteurs ou des Phantoms.",
+  "item.invokablemounts.otherworldly_soul_stealing_candle": "Bougie Voleuse d'Âmes Améliorée",
+  "item.invokablemounts.otherworldly_soul_stealing_candle.hover": "À tenir lorsque vous tuez un animal. Cette bougie améliorée ne peut capturer que des Arpenteurs ou des Phantoms.",
 
   "item.invokablemounts.pig_soul": "Âme de Cochon",
   "item.invokablemounts.horse_soul": "Âme de Cheval",

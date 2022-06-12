@@ -1,10 +1,7 @@
 package io.github.jglrxavpok.invokablemounts.events;
 
 import io.github.jglrxavpok.invokablemounts.InvokableMountsMod;
-import io.github.jglrxavpok.invokablemounts.entities.EnderDragonMount;
-import io.github.jglrxavpok.invokablemounts.entities.HorseMount;
-import io.github.jglrxavpok.invokablemounts.entities.PigMount;
-import io.github.jglrxavpok.invokablemounts.entities.StriderMount;
+import io.github.jglrxavpok.invokablemounts.entities.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
@@ -26,6 +23,7 @@ public class CommonModEvents {
         event.put(InvokableMountsMod.Entities.PIG_MOUNT.get(), PigMount.createAttributes().build());
         event.put(InvokableMountsMod.Entities.HORSE_MOUNT.get(), HorseMount.createAttributes().build());
         event.put(InvokableMountsMod.Entities.STRIDER_MOUNT.get(), StriderMount.createAttributes().build());
+        event.put(InvokableMountsMod.Entities.PHANTOM_MOUNT.get(), PhantomMount.createAttributes().build());
         event.put(InvokableMountsMod.Entities.ENDER_DRAGON_MOUNT.get(), EnderDragonMount.createAttributes().build());
     }
 }
