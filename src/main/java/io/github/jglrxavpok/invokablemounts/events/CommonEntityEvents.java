@@ -4,6 +4,8 @@ import io.github.jglrxavpok.invokablemounts.InvokableMountsMod;
 import io.github.jglrxavpok.invokablemounts.entities.EnderDragonMount;
 import io.github.jglrxavpok.invokablemounts.entities.HorseMount;
 import io.github.jglrxavpok.invokablemounts.entities.PigMount;
+import io.github.jglrxavpok.invokablemounts.items.PhantomInvocationItem;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -14,9 +16,12 @@ import net.minecraft.world.entity.monster.Strider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDestroyBlockEvent;
+import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -68,6 +73,17 @@ public class CommonEntityEvents {
         if(event.getEntity() instanceof EnderDragonMount) {
             // just don't break blocks, thaaanks
             event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    public static void overrideRocketBehaviour(PlayerInteractEvent.RightClickItem event) {
+        Player player = event.getPlayer();
+        if(event.getItemStack().getItem() == Items.FIREWORK_ROCKET) {
+            if(PhantomInvocationItem.isCurrentlyFlyingWithMount(player)) {
+                PhantomInvocationItem.stopFlyingWithMount(player);
+                player.playSound(SoundEvents.ITEM_BREAK);
+            }
         }
     }
 }

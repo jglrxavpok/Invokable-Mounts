@@ -13,7 +13,7 @@
 
   "item.invokablemounts.inactive_phantom_invoker": "Invocation de Phantom",
   "item.invokablemounts.active_phantom_invoker": "Invocation de Phantom",
-  "item.invokablemounts.phantom_invoker.hover": "Invoque un Phantom en temps que parapente.",
+  "item.invokablemounts.phantom_invoker.hover": "Invoque un Phantom en temps que parapente. Trop fragile pour supporter des accélérations violentes.",
 
   "item.invokablemounts.inactive_ender_dragon_invoker": "Invocation de Dragon",
   "item.invokablemounts.active_ender_dragon_invoker": "Invocation de Dragon",

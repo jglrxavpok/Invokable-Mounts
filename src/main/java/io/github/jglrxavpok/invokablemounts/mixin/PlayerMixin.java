@@ -1,6 +1,6 @@
 package io.github.jglrxavpok.invokablemounts.mixin;
 
-import io.github.jglrxavpok.invokablemounts.InvokableMountsMod;
+import io.github.jglrxavpok.invokablemounts.items.PhantomInvocationItem;
 import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -16,9 +16,9 @@ public class PlayerMixin {
 
     @Inject(method = "tryToStartFallFlying()Z", at=@At("HEAD"), require = 1, cancellable = true)
     public void tryToStartFallFlyingHook(CallbackInfoReturnable<Boolean> ci) {
-        if(player().getInventory().countItem(InvokableMountsMod.Items.ACTIVE_PHANTOM_INVOKER.get()) > 0
-        ) {
-            ci.setReturnValue(true);
+        PhantomInvocationItem.FlyBehaviourOverride flyBehaviour = PhantomInvocationItem.overrideFlyBehaviour(player());
+        if(flyBehaviour != PhantomInvocationItem.FlyBehaviourOverride.DEFAULT) {
+            ci.setReturnValue(flyBehaviour == PhantomInvocationItem.FlyBehaviourOverride.ALLOW_FLIGHT);
             ci.cancel();
         }
     }

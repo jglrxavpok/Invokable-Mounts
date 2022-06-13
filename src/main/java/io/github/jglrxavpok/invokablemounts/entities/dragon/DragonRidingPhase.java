@@ -19,6 +19,7 @@ import org.jetbrains.annotations.Nullable;
  */
 public class DragonRidingPhase extends AbstractDragonPhaseInstance {
     private final EnderDragonMount mount;
+    private Vec3 inertia = Vec3.ZERO;
 
     public DragonRidingPhase(EnderDragon dragon) {
         super(dragon);
@@ -30,6 +31,14 @@ public class DragonRidingPhase extends AbstractDragonPhaseInstance {
 
     @Override
     public boolean isSitting() {
+        if(mount.getFirstPassenger() instanceof LivingEntity rider) {
+            Vec3 wantedDirection = computeMoveDeltaFromPlayer(rider);
+
+            if(wantedDirection == null)
+                return true;
+
+            return wantedDirection.lengthSqr() < 10e-6;
+        }
         return false;
     }
 
@@ -72,31 +81,49 @@ public class DragonRidingPhase extends AbstractDragonPhaseInstance {
         return EnderDragonMount.RIDING_PHASE;
     }
 
+    public Vec3 computeMoveDeltaFromPlayer(LivingEntity rider) {
+        final double speedMultiplier = 20.0;
+
+        Vec3 lookDir = rider.getViewVector(1.0f);
+        if(lookDir.lengthSqr() < 10e-16) {
+            return null;
+        }
+
+        lookDir = new Vec3(lookDir.x, lookDir.y * 5, lookDir.z); // x5 on Y to boost vertical angle
+
+        Vec3 forward = lookDir.scale(rider.zza);
+        Vec3 strafe = lookDir.cross(rider.getUpVector(1.0f)).scale(-rider.xxa);
+        Vec3 wantedDirection = forward.add(strafe);
+        if(wantedDirection.lengthSqr() < 10e-6) {
+            if(inertia.lengthSqr() < 10e-16) {
+                return null;
+            }
+
+            Vec3 result = new Vec3(inertia.x, inertia.y, inertia.z);
+            inertia = inertia.scale(0.25);
+            return result;
+        }
+
+        wantedDirection = wantedDirection.normalize();
+
+        inertia = new Vec3(wantedDirection.x * speedMultiplier, wantedDirection.y * speedMultiplier, wantedDirection.z * speedMultiplier);
+        return inertia;
+    }
+
     @Nullable
     @Override
     public Vec3 getFlyTargetLocation() {
         Entity controllingEntity = mount.getFirstPassenger();
+        Vec3 currentPosition = mount.getPosition(1.0f);
         if(controllingEntity instanceof LivingEntity rider) {
-            double speedMultiplier = 20.0;
+            Vec3 wantedDirection = computeMoveDeltaFromPlayer(rider);
 
-            // TODO: add a tiny bit of inertia, stopping immediately looks weird
-            Vec3 lookDir = rider.getViewVector(1.0f);
-            if(lookDir.lengthSqr() < 10e-16) {
+            if(wantedDirection == null || wantedDirection.lengthSqr() < 10e-16) {
                 return null;
             }
 
-            lookDir = new Vec3(lookDir.x, lookDir.y * 5, lookDir.z); // x5 on Y to boost vertical angle
-
-            Vec3 forward = lookDir.scale(rider.zza);
-            Vec3 strafe = lookDir.cross(rider.getUpVector(1.0f)).scale(-rider.xxa);
-            Vec3 wantedDirection = forward.add(strafe);
-            if(wantedDirection.lengthSqr() < 10e-6) {
-                return null;
-            }
-
-            wantedDirection = wantedDirection.normalize();
-
-            return mount.getPosition(1.0f).add(wantedDirection.x * speedMultiplier, wantedDirection.y * speedMultiplier, wantedDirection.z * speedMultiplier);
+            inertia = new Vec3(wantedDirection.x, wantedDirection.y, wantedDirection.z);
+            return currentPosition.add(inertia);
         }
         return null;
     }
