@@ -1,5 +1,6 @@
 package io.github.jglrxavpok.invokablemounts.items;
 
+import io.github.jglrxavpok.invokablemounts.Config;
 import io.github.jglrxavpok.invokablemounts.InvokableMountsMod;
 import io.github.jglrxavpok.invokablemounts.entities.PigMount;
 import net.minecraft.world.InteractionHand;
@@ -36,5 +37,15 @@ public class PigInvocationItem extends InvocationItem<PigMount> {
     @Override
     public PigMount generateEntity(Level level) {
         return new PigMount(InvokableMountsMod.Entities.PIG_MOUNT.get(), level);
+    }
+
+    @Override
+    public double getAverageDuration() {
+        return Config.INSTANCE.PIG_INVOCATION_DURATION.get();
+    }
+
+    @Override
+    public double getReloadTime() {
+        return Config.INSTANCE.PIG_INVOCATION_RELOAD_TIME.get();
     }
 }

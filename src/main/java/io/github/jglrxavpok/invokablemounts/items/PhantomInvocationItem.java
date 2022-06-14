@@ -1,5 +1,6 @@
 package io.github.jglrxavpok.invokablemounts.items;
 
+import io.github.jglrxavpok.invokablemounts.Config;
 import io.github.jglrxavpok.invokablemounts.InvokableMountsMod;
 import io.github.jglrxavpok.invokablemounts.entities.PhantomMount;
 import net.minecraft.client.player.LocalPlayer;
@@ -52,7 +53,7 @@ public class PhantomInvocationItem extends InvocationItem<PhantomMount> {
         if(player.getFirstPassenger() instanceof PhantomMount m) {
             m.unRide();
         }
-        final int cooldown = 50; // TODO: make configurable
+        final int cooldown = Config.INSTANCE.PHANTOM_INVOCATION_COOLDOWN.get();
         player.getCooldowns().addCooldown(InvokableMountsMod.Items.PHANTOM_INVOKER.get(), cooldown);
         player.getCooldowns().addCooldown(InvokableMountsMod.Items.ACTIVE_PHANTOM_INVOKER.get(), cooldown);
     }
@@ -60,6 +61,16 @@ public class PhantomInvocationItem extends InvocationItem<PhantomMount> {
     @Override
     public boolean isRidingCorrespondingEntity(Player player) {
         return true;
+    }
+
+    @Override
+    public double getAverageDuration() {
+        return Config.INSTANCE.PHANTOM_INVOCATION_DURATION.get();
+    }
+
+    @Override
+    public double getReloadTime() {
+        return Config.INSTANCE.PHANTOM_INVOCATION_RELOAD_TIME.get();
     }
 
     // --------------------
@@ -120,4 +131,5 @@ public class PhantomInvocationItem extends InvocationItem<PhantomMount> {
             }
         }
     }
+
 }

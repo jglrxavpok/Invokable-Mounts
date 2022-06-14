@@ -1,5 +1,6 @@
 package io.github.jglrxavpok.invokablemounts.items;
 
+import io.github.jglrxavpok.invokablemounts.Config;
 import io.github.jglrxavpok.invokablemounts.InvokableMountsMod;
 import io.github.jglrxavpok.invokablemounts.entities.HorseMount;
 import io.github.jglrxavpok.invokablemounts.entities.PigMount;
@@ -36,5 +37,15 @@ public class StriderInvocationItem extends InvocationItem<StriderMount> {
     @Override
     public StriderMount generateEntity(Level level) {
         return new StriderMount(InvokableMountsMod.Entities.STRIDER_MOUNT.get(), level);
+    }
+
+    @Override
+    public double getAverageDuration() {
+        return Config.INSTANCE.STRIDER_INVOCATION_DURATION.get();
+    }
+
+    @Override
+    public double getReloadTime() {
+        return Config.INSTANCE.STRIDER_INVOCATION_RELOAD_TIME.get();
     }
 }

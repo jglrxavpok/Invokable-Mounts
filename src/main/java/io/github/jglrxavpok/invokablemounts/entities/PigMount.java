@@ -1,5 +1,6 @@
 package io.github.jglrxavpok.invokablemounts.entities;
 
+import io.github.jglrxavpok.invokablemounts.Config;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -16,6 +17,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class PigMount extends Pig implements MountEntity {
 
+    public static final String ID = "pig_mount";
     private static final EntityDataAccessor<Integer> REMAINING_TICKS = SynchedEntityData.defineId(PigMount.class, EntityDataSerializers.INT);
 
     public PigMount(EntityType<? extends PigMount> entityType, Level level) {
@@ -40,7 +42,7 @@ public class PigMount extends Pig implements MountEntity {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.MOVEMENT_SPEED, 0.25D);
+        return Pig.createMobAttributes().add(Attributes.MAX_HEALTH, Config.INSTANCE.PIG_INVOCATION_HEALTH.get());
     }
 
     @Nullable

@@ -1,5 +1,6 @@
 package io.github.jglrxavpok.invokablemounts.entities;
 
+import io.github.jglrxavpok.invokablemounts.Config;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -18,14 +19,13 @@ import org.jetbrains.annotations.Nullable;
 
 public class StriderMount extends Strider implements MountEntity {
 
+    public static final String ID = "strider_mount";
     private static final EntityDataAccessor<Integer> REMAINING_TICKS = SynchedEntityData.defineId(StriderMount.class, EntityDataSerializers.INT);
 
     public StriderMount(EntityType<? extends StriderMount> entityType, Level level) {
         super(entityType, level);
 
         this.steering.setSaddle(true);
-
-        // TODO: config for health on spawn
     }
 
     @Nullable
@@ -56,7 +56,17 @@ public class StriderMount extends Strider implements MountEntity {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Strider.createAttributes();
+        return Strider.createAttributes().add(Attributes.MAX_HEALTH, Config.INSTANCE.STRIDER_INVOCATION_HEALTH.get());
+    }
+
+    @Override
+    public boolean isFood(ItemStack p_29508_) {
+        return false;
+    }
+
+    @Override
+    public boolean canBreed() {
+        return false;
     }
 
     @Override

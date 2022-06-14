@@ -1,5 +1,6 @@
 package io.github.jglrxavpok.invokablemounts.items;
 
+import io.github.jglrxavpok.invokablemounts.Config;
 import io.github.jglrxavpok.invokablemounts.InvokableMountsMod;
 import io.github.jglrxavpok.invokablemounts.entities.EnderDragonMount;
 import io.github.jglrxavpok.invokablemounts.entities.StriderMount;
@@ -35,5 +36,15 @@ public class EnderDragonInvocationItem extends InvocationItem<EnderDragonMount> 
     @Override
     public EnderDragonMount generateEntity(Level level) {
         return new EnderDragonMount(InvokableMountsMod.Entities.ENDER_DRAGON_MOUNT.get(), level);
+    }
+
+    @Override
+    public double getAverageDuration() {
+        return Config.INSTANCE.ENDER_DRAGON_INVOCATION_DURATION.get();
+    }
+
+    @Override
+    public double getReloadTime() {
+        return Config.INSTANCE.ENDER_DRAGON_INVOCATION_RELOAD_TIME.get();
     }
 }

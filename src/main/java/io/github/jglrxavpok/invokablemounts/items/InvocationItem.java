@@ -1,5 +1,6 @@
 package io.github.jglrxavpok.invokablemounts.items;
 
+import io.github.jglrxavpok.invokablemounts.Config;
 import io.github.jglrxavpok.invokablemounts.InvokableMountsMod;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -62,6 +63,9 @@ public abstract class InvocationItem<T extends Entity> extends Item {
      */
     public abstract T generateEntity(Level level);
 
+    public abstract double getAverageDuration();
+    public abstract double getReloadTime();
+
     /**
      * Is the given player currently riding the entity corresponding to this item?
      */
@@ -96,26 +100,31 @@ public abstract class InvocationItem<T extends Entity> extends Item {
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slot, boolean selected) {
         super.inventoryTick(stack, level, entity, slot, selected);
 
+        if(level.isClientSide) {
+           return;
+        }
         if(entity instanceof Player player) {
             if(isActive) {
                 if(!shouldStayActive(level, stack, player)) {
                     finishActiveState(level, stack, player);
                     player.getInventory().setItem(slot, toggle(stack));
                 } else if(stack.getDamageValue() < stack.getMaxDamage()) {
-                    // TODO: config for speed
-                    // TODO: random to amortize over multiple ticks
                     if(!player.isCreative()) {
-                        stack.setDamageValue(stack.getDamageValue() + 1);
+                        float damageProbability = (float) (1.0f / (getAverageDuration() * 20 / getMaxDamage(stack)));
+                        if(player.getRandom().nextFloat() < damageProbability) {
+                            stack.setDamageValue(stack.getDamageValue() + 1);
+                        }
                     }
                 } else {
                     finishActiveState(level, stack, player);
                     player.getInventory().setItem(slot, toggle(stack));
                 }
             } else {
-                // TODO: config for speed
-                // TODO: random to amortize over multiple ticks
                 if(stack.getDamageValue() > 0) {
-                    stack.setDamageValue(stack.getDamageValue() - 1);
+                    float repairProbability = (float) (1.0f / (getReloadTime() * 20 / getMaxDamage(stack)));
+                    if(player.getRandom().nextFloat() < repairProbability) {
+                        stack.setDamageValue(stack.getDamageValue() - 1);
+                    }
                 }
             }
         }

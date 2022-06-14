@@ -10,7 +10,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
@@ -29,54 +31,54 @@ public class InvokableMountsMod {
         public static final DeferredRegister<EntityType<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.ENTITIES,
                 InvokableMountsMod.MODID);
 
-        public static final RegistryObject<EntityType<PigMount>> PIG_MOUNT = REGISTRY.register("pig_mount", () -> {
+        public static final RegistryObject<EntityType<PigMount>> PIG_MOUNT = REGISTRY.register(PigMount.ID, () -> {
             EntityType.EntityFactory<PigMount> factory = PigMount::new;
             return EntityType.Builder.of(factory, MobCategory.CREATURE)
                     .fireImmune()
                     .noSummon()
                     .sized(0.9F, 0.9F)
                     .clientTrackingRange(10)
-                    .build("pig_mount");
+                    .build(PigMount.ID);
         });
 
-        public static final RegistryObject<EntityType<HorseMount>> HORSE_MOUNT = REGISTRY.register("horse_mount", () -> {
+        public static final RegistryObject<EntityType<HorseMount>> HORSE_MOUNT = REGISTRY.register(HorseMount.ID, () -> {
             EntityType.EntityFactory<HorseMount> factory = HorseMount::new;
             return EntityType.Builder.of(factory, MobCategory.CREATURE)
                     .fireImmune()
                     .noSummon()
                     .sized(1.3964844F, 1.6F)
                     .clientTrackingRange(10)
-                    .build("horse_mount");
+                    .build(HorseMount.ID);
         });
 
-        public static final RegistryObject<EntityType<StriderMount>> STRIDER_MOUNT = REGISTRY.register("strider_mount", () -> {
+        public static final RegistryObject<EntityType<StriderMount>> STRIDER_MOUNT = REGISTRY.register(StriderMount.ID, () -> {
             EntityType.EntityFactory<StriderMount> factory = StriderMount::new;
             return EntityType.Builder.of(factory, MobCategory.CREATURE)
                     .fireImmune()
                     .noSummon()
                     .sized(0.9F, 1.7F)
                     .clientTrackingRange(10)
-                    .build("strider_mount");
+                    .build(StriderMount.ID);
         });
 
-        public static final RegistryObject<EntityType<PhantomMount>> PHANTOM_MOUNT = REGISTRY.register("phantom_mount", () -> {
+        public static final RegistryObject<EntityType<PhantomMount>> PHANTOM_MOUNT = REGISTRY.register(PhantomMount.ID, () -> {
             EntityType.EntityFactory<PhantomMount> factory = PhantomMount::new;
             return EntityType.Builder.of(factory, MobCategory.CREATURE)
                     .fireImmune()
                     .noSummon()
                     .sized(0.9F, 0.5F)
                     .clientTrackingRange(10)
-                    .build("phantom_mount");
+                    .build(PhantomMount.ID);
         });
 
-        public static final RegistryObject<EntityType<EnderDragonMount>> ENDER_DRAGON_MOUNT = REGISTRY.register("ender_dragon_mount", () -> {
+        public static final RegistryObject<EntityType<EnderDragonMount>> ENDER_DRAGON_MOUNT = REGISTRY.register(EnderDragonMount.ID, () -> {
             EntityType.EntityFactory<EnderDragonMount> factory = EnderDragonMount::new;
             return EntityType.Builder.of(factory, MobCategory.CREATURE)
                     .fireImmune()
                     .noSummon()
                     .sized(16.0F, 8.0F)
                     .clientTrackingRange(10)
-                    .build("ender_dragon_mount");
+                    .build(EnderDragonMount.ID);
         });
     }
 
@@ -148,6 +150,7 @@ public class InvokableMountsMod {
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.FORGE_SPEC);
         final var bus = FMLJavaModLoadingContext.get().getModEventBus();
 
         // Register the setup method for modloading

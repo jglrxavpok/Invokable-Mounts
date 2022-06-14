@@ -3,6 +3,7 @@ package io.github.jglrxavpok.invokablemounts.entities;
 import com.mojang.math.Matrix4f;
 import com.mojang.math.Vector3f;
 import com.mojang.math.Vector4f;
+import io.github.jglrxavpok.invokablemounts.Config;
 import io.github.jglrxavpok.invokablemounts.InvokableMountsMod;
 import io.github.jglrxavpok.invokablemounts.entities.dragon.DragonRidingPhase;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -12,6 +13,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.boss.enderdragon.phases.EnderDragonPhase;
 import net.minecraft.world.entity.player.Player;
@@ -22,18 +24,15 @@ import java.util.List;
 
 public class EnderDragonMount extends EnderDragon implements MountEntity {
 
+    public static final String ID = "ender_dragon_mount";
     public static final EnderDragonPhase<DragonRidingPhase> RIDING_PHASE = EnderDragonPhase.create(DragonRidingPhase.class, InvokableMountsMod.MODID+":DragonRidingPhase");
     private static final EntityDataAccessor<Integer> REMAINING_TICKS = SynchedEntityData.defineId(EnderDragonMount.class, EntityDataSerializers.INT);
 
     public EnderDragonMount(EntityType<? extends EnderDragonMount> entityType, Level level) {
         super(entityType, level);
-        // TODO: config for health on spawn
-        // TODO: don't destroy blocks
-
         getPhaseManager().setPhase(RIDING_PHASE);
 
-        //this.noPhysics = false;
-        //this.noCulling = false;
+        setHealth((float)(double)Config.INSTANCE.ENDER_DRAGON_INVOCATION_HEALTH.get());
     }
 
     @Override
@@ -132,7 +131,7 @@ public class EnderDragonMount extends EnderDragon implements MountEntity {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return EnderDragon.createAttributes();
+        return EnderDragon.createAttributes().add(Attributes.MAX_HEALTH, Config.INSTANCE.ENDER_DRAGON_INVOCATION_HEALTH.get());
     }
 
     @Override
