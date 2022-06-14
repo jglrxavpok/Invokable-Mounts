@@ -13,7 +13,7 @@
 
   "item.invokablemounts.inactive_phantom_invoker": "Phantom Invocation",
   "item.invokablemounts.active_phantom_invoker": "Phantom Invocation",
-  "item.invokablemounts.phantom_invoker.hover": "Invokes a ghost Strider as a temporary glider. Too fragile to support massive accelerations.",
+  "item.invokablemounts.phantom_invoker.hover": "Invokes a ghost Phantom as a temporary glider. Too fragile to support massive accelerations.",
 
   "item.invokablemounts.inactive_ender_dragon_invoker": "Dragon Invocation",
   "item.invokablemounts.active_ender_dragon_invoker": "Dragon Invocation",
